@@ -219,9 +219,23 @@ final class OnboardingScreen1ViewController: UIViewController {
 extension OnboardingScreen1ViewController: OnboardingScreen1PresenterOutputProtocol {
     func displayContent(_ entity: OnboardingScreen1Entity) {
         subtitleLabel.text = entity.subtitle
-        titleLabel.text = entity.title
+        titleLabel.attributedText = makeAccentedTitle(entity.title, accentPhrase: "Culinary Journey")
         descriptionLabel.text = entity.description
         skipButton.setTitle(entity.skipButtonTitle, for: .normal)
         continueButton.configure(title: entity.continueButtonTitle, trailingIcon: "arrow.right")
+    }
+
+    private func makeAccentedTitle(_ text: String, accentPhrase: String) -> NSAttributedString {
+        let attributed = NSMutableAttributedString(
+            string: text,
+            attributes: [
+                .font: Theme.Typography.largeTitle,
+                .foregroundColor: Theme.Colors.textPrimary
+            ]
+        )
+        if let range = text.range(of: accentPhrase) {
+            attributed.addAttribute(.foregroundColor, value: Theme.Colors.primary, range: NSRange(range, in: text))
+        }
+        return attributed
     }
 }

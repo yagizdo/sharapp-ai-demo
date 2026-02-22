@@ -9,7 +9,7 @@ struct OnboardingScreen3Entity {
 
     static let `default` = OnboardingScreen3Entity(
         title: "Build Shared Lists",
-        description: "Create collections of your favourite spots, invite your partner, and plan every experience together.",
+        description: "Create collections of your favorite spots and invite your partner to collaborate. Plan your next date night together.",
         continueButtonTitle: "Continue",
         skipButtonTitle: "Skip",
         alreadyHaveAccountTitle: "I already have an account"

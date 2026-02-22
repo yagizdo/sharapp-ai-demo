@@ -193,9 +193,23 @@ final class OnboardingScreen2ViewController: UIViewController {
 // MARK: - Presenter Output
 extension OnboardingScreen2ViewController: OnboardingScreen2PresenterOutputProtocol {
     func displayContent(_ entity: OnboardingScreen2Entity) {
-        titleLabel.text = entity.title
+        titleLabel.attributedText = makeAccentedTitle(entity.title, accentPhrase: "Food Memories")
         descriptionLabel.text = entity.description
-        getStartedButton.configure(title: entity.getStartedButtonTitle)
+        getStartedButton.configure(title: entity.getStartedButtonTitle, trailingIcon: "arrow.right")
         skipButton.setTitle(entity.skipButtonTitle, for: .normal)
+    }
+
+    private func makeAccentedTitle(_ text: String, accentPhrase: String) -> NSAttributedString {
+        let attributed = NSMutableAttributedString(
+            string: text,
+            attributes: [
+                .font: Theme.Typography.largeTitle,
+                .foregroundColor: Theme.Colors.textPrimary
+            ]
+        )
+        if let range = text.range(of: accentPhrase) {
+            attributed.addAttribute(.foregroundColor, value: Theme.Colors.primary, range: NSRange(range, in: text))
+        }
+        return attributed
     }
 }

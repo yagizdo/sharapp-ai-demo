@@ -1,8 +1,13 @@
 import UIKit
 
 /// Full-width primary CTA button with terracotta background.
-/// Supports optional trailing SF Symbol icon.
+/// Supports optional trailing SF Symbol icon and a custom background color.
 final class PrimaryButton: UIButton {
+
+    // MARK: Stored background — allows callers to override the default terracotta
+    var normalBackgroundColor: UIColor = Theme.Colors.primary {
+        didSet { backgroundColor = normalBackgroundColor }
+    }
 
     // MARK: Init
     override init(frame: CGRect) {
@@ -22,7 +27,7 @@ final class PrimaryButton: UIButton {
 
     // MARK: Setup
     private func setup() {
-        backgroundColor = Theme.Colors.primary
+        backgroundColor = normalBackgroundColor
         layer.cornerRadius = Theme.Radius.large
         layer.masksToBounds = true
 
@@ -58,7 +63,7 @@ final class PrimaryButton: UIButton {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         UIView.animate(withDuration: 0.12) {
-            self.backgroundColor = Theme.Colors.primaryDark
+            self.backgroundColor = self.normalBackgroundColor.withAlphaComponent(0.8)
             self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
         }
     }
@@ -66,7 +71,7 @@ final class PrimaryButton: UIButton {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         UIView.animate(withDuration: 0.12) {
-            self.backgroundColor = Theme.Colors.primary
+            self.backgroundColor = self.normalBackgroundColor
             self.transform = .identity
         }
     }
@@ -74,7 +79,7 @@ final class PrimaryButton: UIButton {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
         UIView.animate(withDuration: 0.12) {
-            self.backgroundColor = Theme.Colors.primary
+            self.backgroundColor = self.normalBackgroundColor
             self.transform = .identity
         }
     }

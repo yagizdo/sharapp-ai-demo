@@ -174,6 +174,7 @@ final class OnboardingScreen3ViewController: UIViewController {
 
         // Buttons
         continueButton.translatesAutoresizingMaskIntoConstraints = false
+        continueButton.normalBackgroundColor = Theme.Colors.textPrimary
         continueButton.addTarget(self, action: #selector(continueTapped), for: .touchUpInside)
         contentView.addSubview(continueButton)
 

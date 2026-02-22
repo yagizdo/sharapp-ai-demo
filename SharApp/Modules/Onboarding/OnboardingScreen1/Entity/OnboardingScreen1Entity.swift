@@ -11,7 +11,7 @@ struct OnboardingScreen1Entity {
     static let `default` = OnboardingScreen1Entity(
         subtitle: "Shared with Alex",
         title: "Your Shared Culinary Journey",
-        description: "Discover, save, and plan your next dining experiences together. Build your shared food story one meal at a time.",
+        description: "Link lists with your partner or friends. Rate places together and build a collaborative history of your dining adventures.",
         continueButtonTitle: "Continue",
         skipButtonTitle: "Skip"
     )
