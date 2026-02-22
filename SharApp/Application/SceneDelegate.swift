@@ -13,7 +13,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let window = UIWindow(windowScene: windowScene)
         let rootViewController = OnboardingScreen1Router.createModule()
-        window.rootViewController = rootViewController
+        let navController = UINavigationController(rootViewController: rootViewController)
+        navController.setNavigationBarHidden(true, animated: false)
+        window.rootViewController = navController
         window.makeKeyAndVisible()
         self.window = window
     }
