@@ -12,6 +12,7 @@ final class OnboardingScreen2ViewController: UIViewController {
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
     private let getStartedButton = PrimaryButton(title: "Get Started")
+    private let pageControl = UIPageControl()
     private let skipButton = SecondaryButton(title: "Skip onboarding")
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -116,6 +117,15 @@ final class OnboardingScreen2ViewController: UIViewController {
         descriptionLabel.numberOfLines = 0
         contentView.addSubview(descriptionLabel)
 
+        // Page control
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        pageControl.numberOfPages = 3
+        pageControl.currentPage = 1
+        pageControl.currentPageIndicatorTintColor = Theme.Colors.primary
+        pageControl.pageIndicatorTintColor = Theme.Colors.primary.withAlphaComponent(0.25)
+        pageControl.isUserInteractionEnabled = false
+        contentView.addSubview(pageControl)
+
         // Buttons
         getStartedButton.translatesAutoresizingMaskIntoConstraints = false
         getStartedButton.addTarget(self, action: #selector(getStartedTapped), for: .touchUpInside)
@@ -152,7 +162,10 @@ final class OnboardingScreen2ViewController: UIViewController {
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Spacing.xl),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Spacing.xl),
 
-            getStartedButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: Spacing.xxxl),
+            pageControl.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: Spacing.xl),
+            pageControl.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+
+            getStartedButton.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: Spacing.xl),
             getStartedButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Spacing.xl),
             getStartedButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Spacing.xl),
 

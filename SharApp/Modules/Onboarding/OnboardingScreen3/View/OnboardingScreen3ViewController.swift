@@ -14,6 +14,7 @@ final class OnboardingScreen3ViewController: UIViewController {
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
     private let continueButton = PrimaryButton(title: "Continue", trailingIcon: "arrow.right")
+    private let pageControl = UIPageControl()
     private let accountButton = SecondaryButton(title: "I already have an account")
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -162,6 +163,15 @@ final class OnboardingScreen3ViewController: UIViewController {
         descriptionLabel.numberOfLines = 0
         contentView.addSubview(descriptionLabel)
 
+        // Page control
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        pageControl.numberOfPages = 3
+        pageControl.currentPage = 2
+        pageControl.currentPageIndicatorTintColor = Theme.Colors.primary
+        pageControl.pageIndicatorTintColor = Theme.Colors.primary.withAlphaComponent(0.25)
+        pageControl.isUserInteractionEnabled = false
+        contentView.addSubview(pageControl)
+
         // Buttons
         continueButton.translatesAutoresizingMaskIntoConstraints = false
         continueButton.addTarget(self, action: #selector(continueTapped), for: .touchUpInside)
@@ -207,7 +217,10 @@ final class OnboardingScreen3ViewController: UIViewController {
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Spacing.xl),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Spacing.xl),
 
-            continueButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: Spacing.xxxl),
+            pageControl.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: Spacing.xl),
+            pageControl.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+
+            continueButton.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: Spacing.xl),
             continueButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Spacing.xl),
             continueButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Spacing.xl),
 
